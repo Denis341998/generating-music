@@ -8,7 +8,7 @@ import sys
 import merge
 from tqdm import tqdm
 import argparse
-import tests
+import test
 
 
 class main(object):
@@ -23,7 +23,7 @@ class main(object):
             for f in tqdm(c):
                 song = os.path.join(a, f)
                 try:
-                    n = np.array(midi.midiToNoteStateMatrix(song))
+                    n = np.array(midi.midi_to_note_state_matrix(song))
                     songs.append(n)
                 except Exception as e:
                     print("error: {} on file: {}".format(e, f))
@@ -68,7 +68,8 @@ if __name__ == "__main__":
     if (args.test):
         start_test = args.test
         if (start_test == 'start'):
-            tests.start()
+            #print("test")
+            test.start()
 
     midi = midi_manipulation.midi_manipulation()
 

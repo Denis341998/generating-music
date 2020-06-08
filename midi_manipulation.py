@@ -67,7 +67,7 @@ class midi_manipulation(object):
             elem = int(elem)
 
 
-    def midiToNoteStateMatrix(self, midifile):
+    def midi_to_note_state_matrix(self, midifile):
         Squash = True
         pattern = midi.read_midifile(midifile)
         timeleft = [track[0].tick for track in pattern]
@@ -130,7 +130,7 @@ class midi_manipulation(object):
 
         return statematrix
 
-    def noteStateMatrixToMidi(self, statematrix, name="example"):
+    def note_state_matrix_to_midi(self, statematrix, name="example"):
         statematrix = np.array(statematrix)
         if not len(statematrix.shape) == 3:
             statematrix = np.dstack((statematrix[:, :self.span], statematrix[:, self.span:]))

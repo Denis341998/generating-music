@@ -4,7 +4,7 @@ import midi_manipulation
 import neuralnet
 
 def start():
-    #print("Start tests")
+    print("Start tests")
     # test decode_midi in neuralnet
     decode_midi_typical_test()
     decode_midi_empty_mass()

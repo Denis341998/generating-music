@@ -23,7 +23,7 @@ class merge(object):
         songs = np.zeros((0,156))
         for f in tqdm(files):
             try:
-                song = np.array(midi.midiToNoteStateMatrix(f))
+                song = np.array(midi.midi_to_note_state_matrix(f))
 
                 #if np.array(song).shape[0] > 10:
                 #    print (song)
@@ -38,7 +38,7 @@ class merge(object):
         if(not ".mid" in output):
             output+=".mid"
 
-        midi.noteStateMatrixToMidi(songs, output)
+        midi.note_state_matrix_to_midi(songs, output)
 
         tomp3 = miditomp3.midi_to_mp3()
         tomp3.midi_to_mp3(output)
