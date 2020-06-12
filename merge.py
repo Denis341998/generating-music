@@ -38,7 +38,7 @@ class merge(object):
         if(not ".mid" in output):
             output+=".mid"
 
-        midi.note_state_matrix_to_midi(songs, output)
+        midi.note_state_matrix_to_midi(songs, 1, output)
 
         tomp3 = miditomp3.midi_to_mp3()
         tomp3.midi_to_mp3(output)

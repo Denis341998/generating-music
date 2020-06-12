@@ -158,7 +158,7 @@ class neuralnet(object):
 
                 #print(S)
                 S = midi.check_song(S, midi.mass_check, midi.midi_count)     # Тот самый алгоритм
-                midi.note_state_matrix_to_midi(S, "generated/generated_chord_{}".format(i))
+                midi.note_state_matrix_to_midi(S, 0, "generated/generated_chord_{}".format(i))
 
             #out_songs = np.reshape(out_songs, (num_timesteps, 2 * note_range))#не работает, но пробуй еще
             if is_mean_square == 1:

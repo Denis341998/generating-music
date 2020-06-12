@@ -7,7 +7,7 @@ class midi_manipulation(object):
         self.lowerBound = 24
         self.upperBound = 102
         self.span = self.upperBound - self.lowerBound
-        self.midi_count = 1 #оптимальный вариант
+        self.midi_count = 1 #1 -оптимальный вариант
         self.mass_check = np.array([0])
         self.mass_check = np.delete(self.mass_check, 0)
 
@@ -130,7 +130,7 @@ class midi_manipulation(object):
 
         return statematrix
 
-    def note_state_matrix_to_midi(self, statematrix, name="example"):
+    def note_state_matrix_to_midi(self, statematrix, is_finish, name="example"):
         statematrix = np.array(statematrix)
         if not len(statematrix.shape) == 3:
             statematrix = np.dstack((statematrix[:, :self.span], statematrix[:, self.span:]))
@@ -152,7 +152,11 @@ class midi_manipulation(object):
                 p = prevstate[i]
                 if p[0] == 1:
                     if n[0] == 0:
-                        offNotes.append(i)
+                        if is_finish == 1:
+                            if any(1 in st for st in state): ###
+                                offNotes.append(i)
+                        else:
+                            offNotes.append(i)
                     elif n[1] == 1:
                         offNotes.append(i)
                         onNotes.append(i)
@@ -166,7 +170,11 @@ class midi_manipulation(object):
                 track.append(midi.NoteOnEvent(tick=(time-lastcmdtime)*tickscale, velocity=40, pitch=note+self.lowerBound))
                 lastcmdtime = time
             #print(onNotes)
-            prevstate = state
+            if is_finish == 1:
+                if any(1 in st for st in state): ###
+                    prevstate = state
+            else:
+                prevstate = state
 
         eot = midi.EndOfTrackEvent(tick=1)
         track.append(eot)
